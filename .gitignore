@@ -31,3 +31,18 @@ build/
 
 ### VS Code ###
 .vscode/
+echo "target/
+.idea/
+*.iml
+*.log
+*.class
+*.jar
+*.war
+*.ear
+.DS_Store
+node_modules/
+bin/
+build/
+.gradle/
+.mvn/wrapper/maven-wrapper.jar
+" > .gitignore
