@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import med.voll.api.domain.ValidacaoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -51,8 +52,8 @@ public class TratadorDeErros {
     public ResponseEntity tratarErroAcessoNegado() {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado");
     }
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity tratarErro500(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro: " +ex.getLocalizedMessage());
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity tratarBodyAusenteOuInvalido() {
+        return ResponseEntity.badRequest().body("Corpo da requisição ausente ou inválido");
     }
 }

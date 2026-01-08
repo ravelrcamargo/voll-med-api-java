@@ -17,7 +17,7 @@ public record DadosCadastroPaciente(
         @NotBlank
         String telefone,
 
-        @NotNull
+        String cpf, @NotNull
         @Valid
         DadosEndereco endereco) {
 }
